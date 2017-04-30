@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include<windows.h>
+#include<math.h>
 
 #define MAX_COUNT 10000
 
@@ -246,16 +247,13 @@ void printAverageToFile(FloatArray *obj, char *fileName){
 	fclose(f);
 	
 }
-//ham tra ve gia tri tuyet doi
-float absolute(float x){
-	return (x > 0? x : -x);
-} 
+
 //ham tim do lech
 float findDeviation(FloatArray *obj){
 	int firstIndex = getInputFromKeyBoard(1, obj->count, "Nhap vi tri thu nhat: ");//nhap vi tri thu nhat tu ban phim
 	int secondIndex = getInputFromKeyBoard(1, obj->count, "Nhap vi tri thu hai: ");//nhap vi tri thu hat tu ban phim
 	float deviation = obj->arr[firstIndex - 1] - obj->arr[secondIndex - 1];
-	return abs(deviation);
+	return fabs(deviation);
 }
 //in do lech ra man hinh
 void printDeviationToConsole(FloatArray *obj){
@@ -276,7 +274,7 @@ float findAverageDeviation(FloatArray *obj){
 	float s = 0;
 	int i;
 	for (i = 0; i < obj->count; i++)
-		s+= absolute(obj->arr[i] - average);  //tinh tong do lech giua cac phan tu voi trung binh cong
+		s+= fabs(obj->arr[i] - average);  //tinh tong do lech giua cac phan tu voi trung binh cong
 	return s / obj->count;  //tra ve do lech trung binh
 }
 //ham in do lech trung binh ra man hinh
